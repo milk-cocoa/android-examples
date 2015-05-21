@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MilkChat</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_form_label">メッセージを入力してください。</string>
+    <string name="button_label">投稿</string>
+    <string name="message_label">メッセージ</string>
+
+
+</resources>
