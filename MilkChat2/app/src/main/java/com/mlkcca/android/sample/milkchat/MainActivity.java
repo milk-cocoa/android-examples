@@ -1,15 +1,9 @@
 package com.mlkcca.android.sample.milkchat;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.os.Handler;
 import android.app.Activity;
@@ -51,22 +45,16 @@ public class MainActivity extends Activity implements DataStoreEventListener {
 
         editText = (EditText)findViewById(R.id.editText1);
 
-        try {
-            connect();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        connect();
     }
 
     private void connect() {
-        this.milkcocoa = new MilkCocoa("flagi9edsvtg.mlkcca.com");
-        this.messagesDataStore = MainActivity.this.milkcocoa.dataStore("message");
-        Streaming query;
-        try {
-            query = MainActivity.this.messagesDataStore.streaming();
-            query.size(25);
-            query.sort("desc");
-            query.addStreamingListener(new StreamingListener() {
+        this.milkcocoa = new MilkCocoa("{your-app-id}.mlkcca.com");
+        this.messagesDataStore = this.milkcocoa.dataStore("message");
+        Streaming stream = this.messagesDataStore.streaming();
+        stream.size(25);
+        stream.sort("desc");
+        stream.addStreamingListener(new StreamingListener() {
 
                 @Override
                 public void onData(ArrayList<DataElement> arg0) {
@@ -90,11 +78,7 @@ public class MainActivity extends Activity implements DataStoreEventListener {
                     e.printStackTrace();
                 }
             });
-            query.next();
-        } catch (JSONException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
+        stream.next();
 
         this.messagesDataStore.addDataStoreEventListener(this);
         this.messagesDataStore.on("push");
