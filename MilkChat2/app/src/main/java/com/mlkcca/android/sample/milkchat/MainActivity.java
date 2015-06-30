@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements DataStoreEventListener {
     }
 
     private void connect() {
-        this.milkcocoa = new MilkCocoa("{your-app-id}.mlkcca.com");
+        this.milkcocoa = new MilkCocoa("flagi9edsvtg.mlkcca.com");
         this.messagesDataStore = this.milkcocoa.dataStore("message");
         Streaming stream = this.messagesDataStore.streaming();
         stream.size(25);
